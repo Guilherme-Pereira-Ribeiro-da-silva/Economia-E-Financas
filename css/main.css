@@ -1,0 +1,117 @@
+body{
+    background-color: #262626;
+    font-family: Consolas, serif;
+    color: #ffffff;
+}
+
+#corpo{
+    margin-top: 75px;
+}
+
+#historico-analise-viabilidade-economica{
+    background-color: #262626;
+    list-style: none;
+}
+
+#historico-analise-viabilidade-economica li{
+    margin-left: 15px;
+}
+
+#Calculos-TIR,#Calculos-PD,#Calculos-VPL{
+    font-size: 70%;
+}
+
+h3:before,h4:before,.p-animacao:before,h5:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: 2000ms;
+}
+
+h3:before{
+    transform-origin: left;
+    background: yellow;
+}
+
+h4:before{
+    transform-origin: right;
+    background: purple;
+}
+
+h5:before{
+    transform-origin: left;
+    background: coral;
+}
+
+.p-animacao:before{
+    transform-origin: left;
+    background: green;
+}
+
+h3[data-scroll="in"],h4[data-scroll="in"],h5[data-scroll="in"],.p-animacao[data-scroll="in"]{
+    transform: scaleX(1);
+    transition: 0s;
+}
+
+h3[data-scroll="in"]:before,h4[data-scroll="in"]:before,h5[data-scroll="in"]:before,.p-animacao[data-scroll="in"]:before{
+    transform: scaleX(0);
+    transition: 2000ms;
+}
+
+h3[data-scroll="out"],h4[data-scroll="out"],h3[data-scroll="out"],.p-animacao[data-scroll="out"]{
+    transform: scaleX(1);
+    transition: 2000ms;
+}
+
+.entrada-suave{
+    animation: entrada-suave 2s forwards;
+}
+
+@keyframes entrada-suave{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+
+.saida-suave{
+    animation: saida-suave 2s forwards;
+}
+
+@keyframes saida-suave{
+    from{
+        opacity: 1;
+    }to{
+         opacity: 0;
+     }
+}
+
+.btn,.icone-cliclavel{
+    transition: 1s;
+}
+
+.btn:hover,.icone-cliclavel:hover{
+    transition: 1s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.icone-cliclavel{
+    color: white;
+}
+
+.virar-de-ponta-cabeca{
+    animation: virar-de-ponta-cabeca 500ms forwards;
+}
+
+@keyframes virar-de-ponta-cabeca {
+    to{
+      transform: rotate(-180deg);
+    }
+}
+

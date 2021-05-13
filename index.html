@@ -1,0 +1,210 @@
+<html lang="pt-br">
+    <head>
+        <title>Calculos de economia e finanças</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Guilherme Pereira Ribeiro da Silva">
+        <meta name="description" content="Calculos da área de economia e finanças">
+        <link rel="shortcut icon" type="image/x-icon" href="imagens/logo.png"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <section id="cabecalho">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Economia e finanças</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Início</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Calculos
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a id="analise-e-viabilidade-de-projetos" class="dropdown-item" href="#analise-viabilidade-economica">Análise de viabilidade econômica de projetos</a></li>
+                                    <li><a class="dropdown-item" href="#">Em desenvolvimento</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Em desenvolvimento</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <section id="corpo" class="container">
+            <section id="analise-viabilidade-economica" class="m-2">
+                <h3 class="text-center">Análise de viabilidade econômica de projetos</h3>
+                <div class="row mt-3">
+                    <div class="col-12 col-md-8">
+                        <h4 class="text-center">Tabela</h4>
+                        <p class="p-animacao">Digite a Taxa Média Anual</p>
+
+                        <div class="input-group mb-3 my-2">
+                            <input id="TMA" type="number" class="form-control" placeholder="Taxa Média Anual">
+                            <span class="input-group-text">%</span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="p-animacao">Digite a Taxa de Reinvestimento</p>
+
+                                <div class="input-group mb-3 my-2">
+                                    <input id="Taxa-de-reinvestimento" type="number" class="form-control" placeholder="Taxa de Reinvestimento">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <p class="p-animacao">Digite a Taxa de Financiamento</p>
+
+                                <div class="input-group mb-3 my-2">
+                                    <input id="Taxa-de-financiamento" type="number" class="form-control" placeholder="Taxa de Financiamento">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="tabela-viabilidade-economica" class="table bg-white text-center">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Fluxo de caixa</th>
+                                <th scope="col">Valor Presente</th>
+                                <th scope="col">Saldo</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="corpo-tabela-viabilidade-economica">
+                            <tr>
+                                <th scope="row">0</th>
+                                <th>
+                                    <input id="fluxo-caixa-0" type="number" class="form-control" placeholder="Fluxo inicial" oninput="MudarSaldoEVPInicial(this.value)">
+                                </th>
+                                <th>
+                                    <div class="input-group">
+                                        <input id="vp-inicial" type="number" class="form-control" placeholder="Despesas iniciais" disabled>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="input-group">
+                                        <input id="saldo-0" type="number" class="form-control" placeholder="Saldo inicial" disabled>
+                                    </div>
+                                </th>
+                                <th>
+                                    <button class="btn btn-outline-success" onclick="AdicionarColunaNaTabela()">Add</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-outline-danger" onclick="RemoverColunaDaTabela()">Remover</button>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-warning" type="button" onclick="LimparTabelaECalculosAnaliseEconomica()">Limpar tudo</button>
+                            <button id="btn-calcular-analise-viabilidade-projeto" class="btn btn-success" type="button" onclick="CalcularValorPresenteLiquido()">Calcular</button>
+                        </div>
+
+                        <p id="payback-descontado" class="mt-2 p-animacao">Payback Descontado: Não há nada a calcular</p>
+                        <p id="valor-presente-liquido" class="mt-2 p-animacao">Valor Presente Líquido: Não há nada a calcular</p>
+                        <p id="TIR" class="mt-2 p-animacao">Taxa interna de retorno: Não há nada a calcular</p>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <h4 class="text-center">Cálculos</h4>
+
+                        <p class="mt-5 p-animacao">Cálculos do VPL:</p>
+                        <div id="Calculos-VPL">
+                            Não há nada a calcular
+                        </div>
+
+                        <hr>
+
+                        <p class="mt-2 p-animacao">Cálculos do Payback:</p>
+                        <div id="Calculos-PD">
+                            Não há nada a calcular
+                        </div>
+
+                        <hr>
+
+                        <p class="mt-2 p-animacao">Cálculos da TIR modificada:</p>
+                        <div id="Calculos-TIR">
+                            Não há nada a calcular
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div>
+                    <i class="fa fa-arrow-up fa-lg bg-primary p-2 rounded rounded-circle icone-cliclavel" onclick="HistoricoAnaliseViabilidadeProjetos(this)"></i>
+                    <h5 class="d-inline-block mt-1">Histórico de operações</h5>
+
+                    <div class="mt-2">
+                        <ul id="historico-analise-viabilidade-economica">
+
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="rodape">
+            <footer class="pt-2 pb-2">
+                <div class="container">
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>Sobre o website</h3>
+                            <p class="text-justify">
+                                O website foi desenvolvido com o objetivo de facilitar o desenvolvimento dos cálculos da área de Economia e Finanças. Tanto o uso do do website como do código são livres enquanto forem utilizados para fins não comerciais.
+                            </p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h5>Contate o desenvolvedor</h5>
+                            <a href="https://api.whatsapp.com/send?phone=+5511954444774" target="_blank">
+                                <i class="fa fa-whatsapp fa-lg icone-cliclavel"></i>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/guilherme-pereira-5097b31a2/" target="_blank">
+                                <i class="fa fa-linkedin fa-lg icone-cliclavel"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div id="div-ano" class="text-left">
+                                Copyright@2021 Todos os direitos reservados
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="text-right">
+                                Website Desenvolvido por
+                                <a href="https://www.linkedin.com/in/guilherme-pereira-5097b31a2/" target="_blank">
+                                    Guilherme Pereira
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        <script src="js/Analise-de-viabilidade-economica.js"></script>
+        <script src="js/bibliotecas/scroll-out.js"></script>
+        <script src="js/Rodape.js"></script>
+    </body>
+</html>
