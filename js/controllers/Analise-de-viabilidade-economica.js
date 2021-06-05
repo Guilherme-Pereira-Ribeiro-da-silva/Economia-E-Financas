@@ -162,8 +162,8 @@ function CalcularTMI(){
 
         const TIRm = (raizqualquer(FluxoPosteriorFinal/FluxoAnteriorFinal,NumLinhasTabela - 1) - 1) * 100;
         const TIRmArredondada = Math.round((TIRm + Number.EPSILON)* 100)/100;
-        StringCalculo += "<p><b>Calculo Final:</b> ((√" + (NumLinhasTabela - 1) + "(" + (Math.abs(FluxoPosteriorFinal.toFixed(6))) + "/" + (Math.abs(FluxoAnteriorFinal.toFixed(6))) + ")) - 1) * 100 =>";
-        StringCalculo +=" (√" + (NumLinhasTabela - 1) + " " + Math.abs(FluxoPosteriorFinal/FluxoAnteriorFinal).toFixed(6) + ") * 100 =>";
+        StringCalculo += "<p><b>Cálculo Final:</b> ((√" + (NumLinhasTabela - 1) + "(" + (Math.abs(FluxoPosteriorFinal.toFixed(6))) + "/" + (Math.abs(FluxoAnteriorFinal.toFixed(6))) + ")) - 1) * 100 =>";
+        StringCalculo +=" ((√" + (NumLinhasTabela - 1) + " " + Math.abs(FluxoPosteriorFinal/FluxoAnteriorFinal).toFixed(6) + ") -1) * 100 =>";
         StringCalculo += " (apx) " + TIRmArredondada + "%</p>";
 
         SetarTIR(TIRmArredondada + "%");
